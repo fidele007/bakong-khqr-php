@@ -48,6 +48,8 @@ class IndividualInfo
 
     public ?string $expirationTimestamp;
 
+    public ?string $merchantCategoryCode;
+
     public function __construct(
         string $bakongAccountID,
         string $merchantName,
@@ -65,7 +67,8 @@ class IndividualInfo
         ?string $merchantNameAlternateLanguage = null,
         ?string $merchantCityAlternateLanguage = null,
         ?string $upiMerchantAccount = null,
-        ?string $expirationTimestamp = null
+        ?string $expirationTimestamp = null,
+        ?string $merchantCategoryCode = null
     ) {
         if (Utils::isBlank($bakongAccountID)) {
             throw new KHQRException(KHQRException::BAKONG_ACCOUNT_ID_REQUIRED);
@@ -97,6 +100,7 @@ class IndividualInfo
         $this->merchantCityAlternateLanguage = $merchantCityAlternateLanguage;
         $this->upiMerchantAccount = $upiMerchantAccount;
         $this->expirationTimestamp = $expirationTimestamp;
+        $this->merchantCategoryCode = $merchantCategoryCode;
     }
 
     /**
@@ -114,7 +118,8 @@ class IndividualInfo
      *     merchantNameAlternateLanguage?: string|null,
      *     merchantCityAlternateLanguage?: string|null,
      *     upiMerchantAccount?: string|null,
-     *     expirationTimestamp?: string|null
+     *     expirationTimestamp?: string|null,
+     *     merchantCategoryCode?: string|null
      * } $optionalData
      */
     public static function withOptionalArray(
@@ -140,7 +145,8 @@ class IndividualInfo
             merchantNameAlternateLanguage: $optionalData['merchantNameAlternateLanguage'] ?? null,
             merchantCityAlternateLanguage: $optionalData['merchantCityAlternateLanguage'] ?? null,
             upiMerchantAccount: $optionalData['upiMerchantAccount'] ?? null,
-            expirationTimestamp: $optionalData['expirationTimestamp'] ?? null
+            expirationTimestamp: $optionalData['expirationTimestamp'] ?? null,
+            merchantCategoryCode: $optionalData['merchantCategoryCode'] ?? null,
         );
     }
 }

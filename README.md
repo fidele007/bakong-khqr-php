@@ -4,6 +4,9 @@
 
 This is a complete implementation of the [`bakong-khqr`](https://www.npmjs.com/package/bakong-khqr) npm module, including all the available API calls documented here: https://api-bakong.nbc.gov.kh/document.
 
+> [!TIP]
+> We're up-to-date with the bakong-khqr v1.0.20!
+
 ## Installation
 
 ```shell
@@ -51,7 +54,8 @@ $individualInfo = new IndividualInfo(
     merchantCity: 'PHNOM PENH',
     currency: KHQRData::CURRENCY_KHR,
     amount: 500,
-    expirationTimestamp: strval(floor(microtime(true) * 1000) + 60 * 1000) // Expire in 1 minute
+    expirationTimestamp: strval(floor(microtime(true) * 1000) + 60 * 1000), // Expire in 1 minute
+    merchantCategoryCode: "5999" // optional, default value is 5999
 );
 
 var_dump(BakongKHQR::generateIndividual($individualInfo));
@@ -96,6 +100,8 @@ $merchantInfo = new MerchantInfo(
     merchantID: '123456',
     acquiringBank: 'Dev Bank',
     mobileNumber: '85512345678',
+    expirationTimestamp: strval(floor(microtime(true) * 1000) + (2 * 60 * 1000)), // Expire in 1 minute
+    merchantCategoryCode: "5999" // optional, default value is 5999
 );
 
 var_dump(BakongKHQR::generateMerchant($merchantInfo));

@@ -109,6 +109,8 @@ class KHQRException extends Exception
 
     public const EXPIRATION_TIMESTAMP_IN_THE_PAST = 'EXPIRATION_TIMESTAMP_IN_THE_PAST';
 
+    public const INVALID_MERCHANT_CATEGORY_CODE = 'INVALID_MERCHANT_CATEGORY_CODE';
+
     // Error codes and messages
     public const ERRORS = [
         self::BAKONG_ACCOUNT_ID_REQUIRED => [1, 'Bakong Account ID cannot be null or empty'],
@@ -161,6 +163,7 @@ class KHQRException extends Exception
         self::POINT_OF_INITIATION_METHOD_INVALID => [48, 'Point of Initiation Method is invalid'],
         self::EXPIRATION_TIMESTAMP_LENGTH_INVALID => [49, 'Expiration timestamp length is invalid'],
         self::EXPIRATION_TIMESTAMP_IN_THE_PAST => [50, 'Expiration timestamp is in the past'],
+        self::INVALID_MERCHANT_CATEGORY_CODE => [51, 'Invalid merchant category code'],
     ];
 
     /**

@@ -508,7 +508,7 @@ class BakongKHQR
         }
         $KHQRType = ($type === KHQRData::MERCHANT_TYPE_MERCHANT) ? EMV::MERCHANT_ACCOUNT_INFORMATION_MERCHANT : EMV::MERCHANT_ACCOUNT_INFORMATION_INDIVIDUAL;
         $globalUniqueIdentifier = new GlobalUniqueIdentifier($KHQRType, $merchantInfo);
-        $merchantCategoryCode = new MerchantCategoryCode(EMV::MERCHANT_CATEGORY_CODE, EMV::DEFAULT_MERCHANT_CATEGORY_CODE);
+        $merchantCategoryCode = new MerchantCategoryCode(EMV::MERCHANT_CATEGORY_CODE,$info->merchantCategoryCode ?? EMV::DEFAULT_MERCHANT_CATEGORY_CODE);
         $currency = new TransactionCurrency(EMV::TRANSACTION_CURRENCY, $info->currency);
         if ($info->currency == KHQRData::CURRENCY_USD && $upi) {
             throw new KHQRException(KHQRException::UPI_ACCOUNT_INFORMATION_INVALID_CURRENCY);
@@ -551,7 +551,7 @@ class BakongKHQR
         $KHQRInstances[] = $countryCode;
         $merchantName = new MerchantName(EMV::MERCHANT_NAME, $info->merchantName);
         $KHQRInstances[] = $merchantName;
-        $merchantCity = new MerchantCity(EMV::MERCHANT_CITY, $info->merchantCity);
+        $merchantCity = new MerchantCity(EMV::MERCHANT_CITY, $info->merchantCity ?? EMV::DEFAULT_MERCHANT_CITY);
         $KHQRInstances[] = $merchantCity;
         if (array_filter($additionalDataInformation) !== []) {
             $additionalData = new AdditionalData(EMV::ADDITIONAL_DATA_TAG, $additionalDataInformation);

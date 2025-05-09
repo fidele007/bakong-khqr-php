@@ -13,9 +13,15 @@ class MerchantCategoryCode extends TagLengthString
     {
         if ($value === '' || $value == null) {
             throw new KHQRException(KHQRException::MERCHANT_CATEGORY_TAG_REQUIRED);
-        }
-        if (strlen($value) > EMV::INVALID_LENGTH_MERCHANT_CATEGORY_CODE) {
+        } else if (strlen($value) > EMV::INVALID_LENGTH_MERCHANT_CATEGORY_CODE) {
             throw new KHQRException(KHQRException::MERCHANT_CODE_LENGTH_INVALID);
+        } else if (!preg_match('/^\d+$/', $value)) {
+            throw new KHQRException(KHQRException::INVALID_MERCHANT_CATEGORY_CODE);
+        } else {
+            $mcc = intval($value);
+            if ($mcc < 0 || $mcc > 9999) {
+                throw new KHQRException(KHQRException::INVALID_MERCHANT_CATEGORY_CODE);
+            }
         }
         parent::__construct($tag, $value);
     }
